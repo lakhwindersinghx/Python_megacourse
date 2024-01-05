@@ -4,12 +4,19 @@ while True:
     ask = input("Type add,show,edit,complete or exit: ")
     match ask:
         case "add":
-            task=input("add " )
+            task=input("add " )+"\n"
             to_do_list.append(task)
+            file=open('to_do_list.txt','a') #file opened in append mode 'a' preserves old data aka doesnt overwrite
+            file.writelines(to_do_list)
+            file.close()
 
         case "show":
+            file = open('to_do_list.txt', 'r')
+            to_do_list=file.readlines()
+
             for index,item in enumerate(to_do_list):
                 print(f"{index+1}-{item.capitalize()}")
+
 
         case "edit":
             edit_number=int(input("Which task number do you want to replace?"))
